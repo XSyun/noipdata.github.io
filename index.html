@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html class="hola-html-reset hola-var">
+<head>
+	<meta charset="utf-8">
+	<meta name="keywords" content="OI,NOIP">
+	<meta name="DEscription" content="这是一个专门汇整NOIP历年的考试题目及数据的网站，其目的就是为了方便大家查找，满足oi们以及教练们的需求。本站保证CCF的数据正确可靠，若有疑问请联系我">
+	<title>NOIPdata-NOIP题目及数据</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdui/0.4.2/css/mdui.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+	<style>
+	.mdui-textbox-initial{
+		border-color:#C9C9C9 !important;
+		display:block;
+		padding-left:10px;
+		height:38px;
+		line-height:1.3;
+		line-height:38px\9;
+		border-width:1px;
+		border-style:solid;
+		background-color:#fff;
+		border-radius:2px;
+		outline:0;
+		-webkit-appearance:none;
+		transition:all .3s;
+		-webkit-transition:all .3s;
+		box-sizing:border-box;
+		font-family:inherit;
+		font-size:inherit;
+		font-style:inherit;
+		font-weight:inherit;
+		outline: 0;
+	}
+	.mdui-footer-font a{
+		color:rgba(135,135,135,1);
+		text-decoration:none;
+	}
+	.mdui-footer-font a:hover{
+		color:rgba(110,110,110,1);
+		text-decoration:underline;
+	}
+	.mdui-footer-font a:active{
+		color:rgba(80,80,80,1);
+	}
+	</style>
+</head>
+
+<body class="mdui-theme-primary-indigo mdui-theme-accent-pink">
+	<div class="mdui-fab-wrapper mdblog-fab" id="exampleFab">
+		<button class="mdui-fab mdui-ripple mdui-color-theme-accent mdui-fab-hide" id="return-top" onclick="$('html,body').animate({scrollTop:0},'fast');">
+			<i class="mdui-icon material-icons">keyboard_arrow_up</i>
+		</button>
+	</div>
+	<div class="mdui-container" style="margin-top:100px;">
+		<div style="width:100%;text-align:center;">
+			<div style="width:75%;margin:0 auto;">
+				<div class="mdui-typo-display-2-opacity mdui-hidden-md-down" style="width:100%;text-align:center;">NOIP题目及数据</div>
+				<div class="mdui-typo-display-1-opacity mdui-hidden-xs mdui-hidden-sm mdui-hidden-lg mdui-hidden-xl" style="width:100%;text-align:center;">NOIP题目及数据</div>
+				<div class="mdui-typo-headline-opacity mdui-hidden-xs mdui-hidden-md mdui-hidden-lg mdui-hidden-xl" style="width:100%;text-align:center;font-size:30px;color:gray;">NOIP题目及数据</div>
+				<div class="mdui-typo-headline-opacity mdui-hidden-sm-up" style="width:100%;text-align:center;color:gray;">NOIP题目及数据</div>
+				<div style="position:relative;margin-top:30px;">
+					<div class="layui-input-block" style="margin-right:90px;margin-left:0px;">
+						<input type="text" id="t_search" placeholder="输入关键字如年份 留空搜索全部" class="mdui-textbox-initial" style="width:100%;">
+					</div>
+					<div style="position:absolute;right:0;top:0;">
+						<button onclick="searchs(document.getElementById('t_search').value);" class="mdui-btn mdui-color-theme-accent mdui-ripple" style="padding:0 0px;width:90px;height:38px;">搜索</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div style="width:75%;margin-top:100px;" class="mdui-center" id="all_txt">
+			
+		</div>
+	</div>
+	<footer style="height:160px;margin-top:60px;text-align:center;background-color:rgba(247,247,247,1);">
+		<br/><br/>
+		<div class="mdui-typo-subheading-opacity mdui-footer-font" style="font-size:18px;">
+			<a href="#mdui-dialog" onclick="mdui.dialog({title: '举报数据',content: '请直接发布在讨论面板，谢谢！',buttons: [{text: '确认',}]});">举报资源</a>
+			<span>|</span>
+			<a href="http://rcxzsc.ooo">作者博客</a>
+			<span>|</span>
+			<a href="https://github.com/noipdata/noipdata.github.io">项目地址</a>
+			<br/>
+			<div style="margin-top:20px;color:rgba(94,94,94,1);">
+				<b>&copy;2018-2019 Rotary color & Current page version: </b>
+				<span style="background-color:#ff4081;color:white;">V2.2</span>
+			</div>
+		</div>
+	</footer>
+	<script>
+	function searchs(search_txt){
+		$.get("data.txt",function(data,status){
+			$("div").remove(".d_item");
+			var txt=data.split('\n');
+			var tot=0;
+			for(var i in txt){
+				var txt2=txt[i].split(' ');
+				var where="",ok=-1;
+				try
+				{
+					ok=txt2[2].indexOf(search_txt,0);
+				}
+				catch(e)
+				{
+					
+				}
+				if(ok==-1)continue;
+				tot++;
+				if(txt2[1]=="CCF")where="<div class='mdui-chip mdui-float-right'>\
+									<span class='mdui-chip-title' style='cursor: pointer;'>CCF官方</span>\
+								</div>\
+							";
+				var tmp="<div class='d_item'>\
+				<div style='margin:15px;' class=''></div>\
+				<div class='mdui-card mdblog-article-card mdui-hoverable' mdui-tooltip=\"{content: '点击下载"+txt2[2]+"', position: 'top'}\" mdui-dialog=\"{target: '#download-"+i+"', closeOnEsc:false, modal:true}\">\
+					<div style='margin:20px;'>\
+						<div class='mdui-card-primary'>\
+							<div class='mdui-row'>\
+								<font class='mdui-float-left mdblog-list-title mdui-card-primary-title'>"+txt2[2]+"-<font style='color:#ff4081;'>"+txt2[0]+"</font></font>\
+								"+where+"<div class='mdui-chip mdui-float-right'>\
+									<span class='mdui-chip-title' style='cursor: pointer;'>"+txt2[0]+"</span>\
+								</div>\
+							</div>\
+							<div class='mdui-card-primary-subtitle'>"+txt2[3]+"</div>\
+						</div>\
+						<div class='mdui-card-content mdui-typo-body-1'>\
+							"+txt2[2]+" 来自"+txt2[0]+" 数据版权归原作者所有 点击这个方框下载\
+						</div>\
+					</div>\
+				</div>\
+				<div class='mdui-dialog' id='download-"+i+"'>\
+					<div class='mdui-dialog-title'>查看下载地址</div>\
+					<div class='mdui-divider'></div>\
+					<div class='mdui-container' style='margin-top:30px;'>\
+						<font>百度网盘地址:</font><input type='text' class='mdui-textbox-initial' value='"+txt2[4]+"' style='width:100%;'>\
+						<p>密码:"+txt2[5]+"</p>\
+						<img class='mdui-center' src='https://pan.baidu.com/share/qrcode?w=300&h=300&url="+txt2[4]+"'/>\
+					</div>\
+					<div class='mdui-dialog-actions'>\
+						<button class='mdui-btn mdui-ripple' mdui-dialog-close>关闭</button>\
+					</div>\
+				</div>\
+			</div>";
+				document.getElementById("all_txt").innerHTML+=(tmp);
+			}
+			mdui.snackbar({
+				message: '加载完成,共'+tot+'个结果',
+				position: 'right-bottom'
+			});
+		}).fail(function(){
+			mdui.dialog({
+				title: '错误',
+				content: '无法获取数据文件,请检查',
+				buttons: [
+					{
+						text: '确认',
+					}
+				]
+			});
+		});
+	}
+	$(document).scroll(function(){
+		var ele=document.getElementById("return-top");
+		if($(document).scrollTop()>100){//$(window).height()
+			$("#return-top").removeClass("mdui-fab-hide");
+		}else{
+			$("#return-top").addClass("mdui-fab-hide");
+		}
+	});
+	</script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/mdui/0.4.2/js/mdui.min.js"></script>
+</body>
+</html>
