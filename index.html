@@ -4,6 +4,12 @@
 		<meta charset="utf-8">
 		<meta name="keywords" content="OI,NOIP">
 		<meta name="DEscription" content="这是一个专门汇整NOIP历年的考试题目及数据的网站，其目的就是为了方便大家查找，满足oi们以及教练们的需求。本站保证CCF的数据正确可靠，若有疑问请联系我">
+		
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="renderer" content="webkit">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no">
+		<meta http-equiv="Cache-Control" content="no-siteapp">
+		
 		<title>NOIPdata-NOIP题目及数据</title>
 		
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdui/0.4.2/css/mdui.min.css">
@@ -46,81 +52,113 @@
 					<div class="mdui-text-center">
 						<p style="font-size:30px;" class="mdui-text-color-blue">NOIPdata</p>
 					</div>
-					<li class="mdui-list-item mdui-ripple" onclick="#">
+					<li class="mdui-list-item mdui-ripple" onclick="window.open('#','_self')">
 						<i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-red">home</i>
 						<div class="mdui-list-item-content">主页</div>
 					</li>
 				
-					<li class="mdui-list-item mdui-ripple" onclick="https://www.cnblogs.com/rcxzsc">
+					<li class="mdui-list-item mdui-ripple" onclick="window.open('https://www.cnblogs.com/rcxzsc','_self')">
 						<i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-green">account_circle</i>
 						<div class="mdui-list-item-content">作者</div>
 					</li>
-					<li class="mdui-list-item mdui-ripple">
+					<li class="mdui-list-item mdui-ripple" onclick="window.open('https://afdian.net/@rcxzsc','_self')" mdui-tooltip="{content: '我计划下一步购买服务器，告别百度网盘，告别只能用html，但这需要大量的资金，如果你有能力，不妨赞助一下我' ,position: 'top'}">
 						<i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-brown">attach_money</i>
 						<div class="mdui-list-item-content">赞助</div>
 					</li>
 					
-					<li class="mdui-list-item mdui-ripple">
+					<li class="mdui-list-item mdui-ripple" onclick="showdailylogs();" mdui-tooltip="{content: '查看更新日志' ,position: 'top'}" mdui-dialog="{target: '#dailylogs', closeOnEsc:false, modal:true}">
 						<i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-purple">turned_in</i>
-						<div class="mdui-list-item-content">当前版本3.0</div>
+						<div class="mdui-list-item-content">前端版本3.1</div>
 					</li>
 				</ul>
 			</div>
 		</div>
+		
 		<div class="mdui-container">
 			<div class="mdui-hidden-md-up" style="height:40%;width:100%;">
 				<p style="font-size:30px;" class="mdui-text-color-blue mdui-center">NOIPdata</p>
 			</div>
+			
+			<div class='mdui-dialog' id='dailylogs'>
+				<div class="mdui-dialog-content">
+					<div class='mdui-dialog-title'>查看更新日志</div>
+					<div class='mdui-divider'></div>
+					<div id="showdlp" class='mdui-container' style='margin-top:30px;'>
+					
+					</div>
+				</div>
+				<div class='mdui-dialog-actions'>
+					<button class='mdui-btn mdui-ripple' mdui-dialog-close>关闭</button>
+				</div>
+			</div>
+			
 			<div style="margin-top:50px;"></div>
 			<div style="margin-top:100px;" class="mdui-hidden-md-down"></div>
 			
 			<div style="width:100%;text-align:center;">
-				<div style="width:75%;margin:0 auto;">
-					<div class="mdui-typo-display-2-opacity mdui-hidden-md-down" style="width:100%;text-align:center;">检索</div>
-					<div class="mdui-typo-display-1-opacity mdui-hidden-xs mdui-hidden-sm mdui-hidden-lg mdui-hidden-xl" style="width:100%;text-align:center;">检索</div>
-					<div class="mdui-typo-headline-opacity mdui-hidden-xs mdui-hidden-md mdui-hidden-lg mdui-hidden-xl" style="width:100%;text-align:center;font-size:30px;color:gray;">检索</div>
-					<div class="mdui-typo-headline-opacity mdui-hidden-sm-up" style="width:100%;text-align:center;color:gray;">检索</div>
-					<div style="position:relative;margin-top:30px;">
-						<div class="layui-input-block" style="margin-right:90px;margin-left:0px;">
-							<input class="mdui-textbox-initial" id="t_search" style="width:100%;" type="text" placeholder="输入关键字如年份 留空搜索全部">
-						</div>
-						<div style="position:absolute;right:0;top:0;">
-							<button class="mdui-btn mdui-color-theme-a200 mdui-ripple" style="padding:0 0px;width:90px;height:38px;" onclick="searchs(document.getElementById('t_search').value);">搜索</button>
-							<button id="showmoreb" onclick="$('#shaixuan').removeClass('mdui-hidden');$('#showmoreb').addClass('mdui-hidden');$('#showhidb').removeClass('mdui-hidden');" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">expand_more</i></button>
-							<button id="showhidb" onclick="$('#shaixuan').addClass('mdui-hidden');$('#showhidb').addClass('mdui-hidden');$('#showmoreb').removeClass('mdui-hidden');" class="mdui-btn mdui-btn-icon mdui-hidden"><i class="mdui-icon material-icons">keyboard_arrow_up</i></button>
-						</div>
-						<div id="shaixuan" style="position:relative;z-index:999;" class="mdui-hidden">
+				<div style="width:88%;margin:0 auto;">
+					<div style="width:100%;">
+						<div class="mdui-typo-display-2-opacity mdui-hidden-md-down" style="width:100%;text-align:center;">检索</div>
+						<div class="mdui-typo-display-1-opacity mdui-hidden-xs mdui-hidden-sm mdui-hidden-lg mdui-hidden-xl" style="width:100%;text-align:center;">检索</div>
+						<div class="mdui-typo-headline-opacity mdui-hidden-xs mdui-hidden-md mdui-hidden-lg mdui-hidden-xl" style="width:100%;text-align:center;font-size:30px;color:gray;">检索</div>
+						<div class="mdui-typo-headline-opacity mdui-hidden-sm-up" style="width:100%;text-align:center;color:gray;">检索</div>
+						<div style="position:relative;margin-top:30px;" class="mdui-collapse-item">
+							<div class="layui-input-block" style="margin-right:128px;margin-left:0px;">
+								<input class="mdui-textbox-initial" id="t_search" style="width:100%;" type="text" placeholder="输入关键字 留空搜全部">
+							</div>
 							<div style="position:absolute;right:0;top:0;">
-								<div class="mdui-list mdui-color-white mdui-shadow-5">
-									<p>过滤内容</p>
+								<button class="mdui-btn mdui-color-theme-a200 mdui-ripple" style="padding:0 0px;width:90px;height:38px;" onclick="searchs(document.getElementById('t_search').value);">搜索</button>
+								
+								<button mdui-menu="{target: '#cor'}" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">expand_more</i></button>
+								<style>
+								.qiangzhi{
+									width:180px !important;
+								}
+								</style>
+								<ul class="mdui-menu mdui-menu-cascade qiangzhi" id="cor">
+									<p>过滤内容(打钩显示)</p>
 									<label class="mdui-list-item mdui-ripple">
 										<div class="mdui-checkbox">
-											<input id="showprob" type="checkbox" checked/>
+											<input id="show0" type="checkbox"/>
 											<i class="mdui-checkbox-icon"></i>
 										</div>
-										<div class="mdui-list-item-content">显示题目</div>
+										<div class="mdui-list-item-content">初赛题目</div>
 									</label>
 									
 									<label class="mdui-list-item mdui-ripple">
 										<div class="mdui-checkbox">
-											<input id="showdata" type="checkbox" checked/>
+											<input id="show1" type="checkbox" checked/>
 											<i class="mdui-checkbox-icon"></i>
 										</div>
-										<div class="mdui-list-item-content">显示数据</div>
+										<div class="mdui-list-item-content">复赛题目</div>
 									</label>
-								</div>
+									
+									<label class="mdui-list-item mdui-ripple">
+										<div class="mdui-checkbox">
+											<input id="show2" type="checkbox" checked/>
+											<i class="mdui-checkbox-icon"></i>
+										</div>
+										<div class="mdui-list-item-content">测试数据</div>
+									</label>
+								</ul>
 							</div>
+							
 						</div>
+					</div>
+					<div class="mdui-center" id="all_txt" style="width:100%;margin-top:70px;">
+					
 					</div>
 				</div>
 			</div>
 			
-			<div class="mdui-center" id="all_txt" style="width:75%;margin-top:70px;">
-				
-			</div>
+			
+			
+			<div style="margin-top:50px;"></div>
 		</div>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/mdui/0.4.2/js/mdui.min.js"></script>
 		<script>
+		$.get("dailylogs.txt",function(data,status){
+			document.getElementById("showdlp").innerHTML=data;
+		});
 		function searchs(search_txt){
 			$.get("data.txt",function(data,status){
 				$("div").remove(".d_item");
@@ -129,25 +167,15 @@
 				for(var i in txt){
 					var txt2=txt[i].split(' ');
 					var where="",ok=-1;
-					try
-					{
+					try{
 						ok=txt2[2].indexOf(search_txt,0);
 					}
-					catch(e)
-					{
+					catch(e){
 						
 					}
 					if(ok==-1)continue;
 					
-					var isokdata=false;
-					
-					if($("#showprob").get(0).checked && txt2[6].indexOf("0",0)!=-1)
-						isokdata=true;
-					
-					if($("#showdata").get(0).checked && txt2[6].indexOf("1",0)!=-1)
-						isokdata=true;
-					
-					if(!isokdata)
+					if(!(($("#show2").get(0).checked && txt2[6].indexOf("2",0)!=-1) || ($("#show1").get(0).checked && txt2[6].indexOf("1",0)!=-1) || ($("#show0").get(0).checked && txt2[6].indexOf("0",0)!=-1)))
 						continue;
 					
 					tot++;
@@ -160,7 +188,7 @@
 					<div class='mdui-card mdblog-article-card mdui-hoverable' mdui-tooltip=\"{content: '点击下载"+txt2[2]+"', position: 'top'}\" mdui-dialog=\"{target: '#download-"+i+"', closeOnEsc:false, modal:true}\">\
 						<div style='margin:20px;'>\
 							<div class='mdui-card-primary'>\
-								<div class='mdui-row'>\
+								<div class='mdui-row' mdui-dialog=\"{target: '#download-"+i+"', closeOnEsc:false, modal:true}\">\
 									<font class='mdui-float-left mdblog-list-title mdui-card-primary-title'>"+txt2[2]+"-<font style='color:#ff4081;'>"+txt2[0]+"</font></font>\
 									"+where+"<div class='mdui-chip mdui-float-right'>\
 										<span class='mdui-chip-title' style='cursor: pointer;'>"+txt2[0]+"</span>\
@@ -213,5 +241,6 @@
 			}
 		});
 	</script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/mdui/0.4.2/js/mdui.min.js"></script>
 	</body>
 </html>
